@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ProductDataService from '../services/product.service.js';
 
 const SERVER_URL = 'http://localhost:8080/';
 
@@ -9,7 +10,16 @@ const MyProductsList = () => {
     retrieveProducts();
   }, []);
 
-  const retrieveProducts = () => {};
+  const retrieveProducts = () => {
+    ProductDataService.getAll()
+      .then((response) => {
+        setProducts(response.data);
+        console.log(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 
   return (
     <div className="col-9">
