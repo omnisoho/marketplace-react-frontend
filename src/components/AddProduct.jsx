@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ProductDataService from '../services/product.service';
+import UploadDataService from '../services/upload.service';
 
 const SERVER_URL = 'http://localhost:8080/';
 
@@ -19,6 +20,17 @@ const AddProduct = () => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setProduct({ ...product, [name]: value });
+  };
+
+  const handleFileChange = (event) => {
+    console.log('event.target.files', event.target.files);
+    if (event.target.files && event.target.files.length > 0) {
+      const imageFile = event.target.files[0];
+      UploadDataService.upload(imageFile).then((response) => {
+        console.log('upload response', response, response.data);
+        setProduct({ ...product, imageUrl: response.data });
+      });
+    }
   };
 
   const saveProduct = () => {
@@ -101,7 +113,24 @@ const AddProduct = () => {
             />
           </div>
 
-          {product.imageUrl && <img src={SERVER_URL + product.imageUrl}></img>}
+          <div className="form-group">
+            <label htmlFor="name">Upload an Image</label>
+            <input
+              type="file"
+              className="form-control"
+              id="imageUpload"
+              // required
+              // value={product.imageUrl}
+              onChange={handleFileChange}
+              name="imageUpload"
+            />
+            {product.imageUrl && (
+              <img
+                src={SERVER_URL + product.imageUrl}
+                style={{ width: 200 }}
+              ></img>
+            )}
+          </div>
 
           <button onClick={saveProduct} className="btn btn-success">
             Submit
