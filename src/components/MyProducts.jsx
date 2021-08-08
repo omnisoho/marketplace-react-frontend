@@ -29,7 +29,11 @@ const MyProductsList = () => {
 
   return (
     <div className="col-9">
-      <div className="h1">{`Hi ${currentUser.username}, these are your products`}</div>
+      <div className="h1">
+        {products.length > 0
+          ? `Hi ${currentUser.username}, these are your products`
+          : `Hi ${currentUser.username}, you currently have no products`}
+      </div>
 
       {products &&
         products.map((product, index) => (
@@ -57,7 +61,13 @@ const MyProductsList = () => {
                   <h4 className="card-title">
                     {product.price ? `$ ${product.price}` : `-`}
                   </h4>
-                  {product.status === 'Sold' && product.buyer ? (
+                  {product.status === 'Sold' &&
+                  product.buyer &&
+                  product.buyer.username === currentUser.username ? (
+                    <h4 className="card-title text-success">{`Bought`}</h4>
+                  ) : product.status === 'Sold' &&
+                    product.buyer &&
+                    product.buyer.username !== currentUser.username ? (
                     <h4 className="card-title text-success">{`Sold to ${product.buyer.username}`}</h4>
                   ) : (
                     <h4 className="card-title text-info">{product.status}</h4>
