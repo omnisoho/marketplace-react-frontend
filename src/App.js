@@ -27,14 +27,12 @@ const App = () => {
   return (
     <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <Link to={'/'} className="navbar-brand">
-          Marketplace
-        </Link>
+        <div className="navbar-brand">Marketplace</div>
         <div className="navbar-nav mr-auto">
           {currentUser && (
             <li className="nav-item">
               <Link to={'/productList'} className="nav-link">
-                Search Products
+                Buy Products
               </Link>
             </li>
           )}
@@ -42,7 +40,7 @@ const App = () => {
           {currentUser && (
             <li className="nav-item">
               <Link to={'/addProduct'} className="nav-link">
-                Add Product
+                Sell Product
               </Link>
             </li>
           )}
@@ -52,7 +50,7 @@ const App = () => {
           <div className="navbar-nav ml-auto">
             <li className="nav-item">
               <Link to={'/myProducts'} className="nav-link">
-                {currentUser.username}
+                My Products
               </Link>
             </li>
             <li className="nav-item">
@@ -80,6 +78,7 @@ const App = () => {
 
       <div className="container mt-3 d-flex justify-content-center">
         <Switch>
+          <Route exact path="/" component={Login} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/productList" component={ProductList} />

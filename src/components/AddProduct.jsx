@@ -64,79 +64,84 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="submit-form">
-      {submitted ? (
-        <div>
-          <h4>You submitted successfully!</h4>
-          <button className="btn btn-success" onClick={newProduct}>
-            Add
-          </button>
-        </div>
-      ) : (
-        <div>
-          <div className="form-group">
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              className="form-control"
-              id="name"
-              required
-              value={product.name}
-              onChange={handleInputChange}
-              name="name"
-            />
+    <div className="col-4">
+      <div className="row">
+        <div className="h1 col-12">{`Add product information`}</div>
+      </div>
+      <div className="submit-form">
+        {submitted ? (
+          <div>
+            <h4>You submitted successfully!</h4>
+            <button className="btn btn-success" onClick={newProduct}>
+              Add
+            </button>
           </div>
+        ) : (
+          <div>
+            <div className="form-group">
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                className="form-control"
+                id="name"
+                required
+                value={product.name}
+                onChange={handleInputChange}
+                name="name"
+              />
+            </div>
 
-          <div className="form-group">
-            <label htmlFor="description">Description</label>
-            <input
-              type="text"
-              className="form-control"
-              id="description"
-              required
-              value={product.description}
-              onChange={handleInputChange}
-              name="description"
-            />
+            <div className="form-group">
+              <label htmlFor="description">Description</label>
+              <input
+                type="text"
+                className="form-control"
+                id="description"
+                required
+                value={product.description}
+                onChange={handleInputChange}
+                name="description"
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="name">Price</label>
+              <input
+                type="text"
+                className="form-control"
+                id="price"
+                required
+                value={product.price}
+                onChange={handleInputChange}
+                name="price"
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="name">Upload an Image</label>
+              <input
+                type="file"
+                className="form-control"
+                id="imageUpload"
+                // required
+                // value={product.imageUrl}
+                onChange={handleFileChange}
+                name="imageUpload"
+              />
+              {product.imageUrl && (
+                <img
+                  src={SERVER_URL + product.imageUrl}
+                  style={{ width: 200 }}
+                ></img>
+              )}
+            </div>
+
+            <button onClick={saveProduct} className="btn btn-success">
+              Submit
+            </button>
           </div>
-
-          <div className="form-group">
-            <label htmlFor="name">Price</label>
-            <input
-              type="text"
-              className="form-control"
-              id="price"
-              required
-              value={product.price}
-              onChange={handleInputChange}
-              name="price"
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="name">Upload an Image</label>
-            <input
-              type="file"
-              className="form-control"
-              id="imageUpload"
-              // required
-              // value={product.imageUrl}
-              onChange={handleFileChange}
-              name="imageUpload"
-            />
-            {product.imageUrl && (
-              <img
-                src={SERVER_URL + product.imageUrl}
-                style={{ width: 200 }}
-              ></img>
-            )}
-          </div>
-
-          <button onClick={saveProduct} className="btn btn-success">
-            Submit
-          </button>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
