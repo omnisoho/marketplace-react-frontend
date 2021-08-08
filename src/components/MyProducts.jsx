@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ProductDataService from '../services/product.service.js';
+import Moment from 'moment';
 
 const SERVER_URL = 'http://localhost:8080/';
 
@@ -46,7 +47,9 @@ const MyProductsList = () => {
                   <p className="card-text">{product.description}</p>
                   <p className="card-text">
                     <small className="text-muted">
-                      Last updated 3 mins ago
+                      {Moment(new Date(product.datePublished)).format(
+                        'DD MMM YY hh:mm A'
+                      )}
                     </small>
                   </p>
                 </div>
