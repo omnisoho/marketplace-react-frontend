@@ -37,4 +37,5 @@ How to start the application
 ```
 npm start
 ```
-The server will be running on http://localhost:3000
+The server will be running on http://localhost:3000. 
+You can open a web browser with this url to access the front-end application.
