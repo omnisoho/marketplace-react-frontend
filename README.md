@@ -17,9 +17,16 @@ You need to have NodeJs and NPM on your machine to start the server and install 
 
 ## Installing
 
+Git clone the repository
+
+```
+git clone https://github.com/omnisoho/marketplace-react-frontend.git
+```
+
 After git clone of the repository, run the following in the root folder
 
 ```
+cd marketplace-react-frontend/
 npm install
 ```
 
